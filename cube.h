@@ -6,7 +6,7 @@
 /*   By: mbahstou <mbahstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:42:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2020/11/25 17:23:54 by mbahstou         ###   ########.fr       */
+/*   Updated: 2020/11/25 18:16:46 by mbahstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct	s_data
 	char	*pat_ea;
 	char	*pat_we;
 	char	*pat_s;
-	t_color	*roof;
+	t_color	*ceiling;
 	t_color	*floor;
 }				t_data;
 
@@ -44,6 +44,7 @@ typedef struct	s_data
 
 void	map_read(t_data *data);
 void	ft_init(t_data *data);
+void	resolution(t_data *data);
 /*
 **              				GET NEXT LINE
 */
