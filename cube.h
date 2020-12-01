@@ -6,7 +6,7 @@
 /*   By: mbahstou <mbahstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:42:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2020/11/27 19:25:40 by mbahstou         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:59:12 by mbahstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct	s_data
 	char	*pat_we;
 	char	*pat_s;
 	char	*map;
+	int		**matrix_map;
 	t_color	*ceiling;
 	t_color	*floor;
 }				t_data;
@@ -50,6 +51,7 @@ int		f_color(t_data *data);
 int		color_errors(t_data *data);
 void	t_paths(t_data *data);
 void	map_read(t_data *data);
+void	map_to_matrix(t_data *data);
 /*
 **              				GET NEXT LINE
 */

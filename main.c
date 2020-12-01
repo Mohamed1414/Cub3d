@@ -6,7 +6,7 @@
 /*   By: mbahstou <mbahstou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:37:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2020/11/25 17:35:01 by mbahstou         ###   ########.fr       */
+/*   Updated: 2020/12/01 18:28:00 by mbahstou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@ void	ft_init(t_data *data)
 {
 	data->resx = 0;
 	data->resy = 0;
+	data->ceiling = malloc(sizeof(t_color));
+	data->floor = malloc(sizeof(t_color));
 }
 
-
-int main (int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_data *data;
 
 	data = malloc(sizeof(t_data));
+
 	ft_init(data);
 
 	if (argc < 2)
@@ -38,7 +40,6 @@ int main (int argc, char *argv[])
 		printf("Error while opening the file");
 		return (1);
 	}
-	map_read(data);
-	printf("%d", data->resx);
+	description_read(data);
 	return (0);
 }
