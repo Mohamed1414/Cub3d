@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbahstou <mbahstou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:42:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2020/12/01 18:59:12 by mbahstou         ###   ########.fr       */
+/*   Updated: 2021/02/08 21:00:43 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include "./minilibx-linux/mlx.h"
 
 typedef	struct	s_color
 {
@@ -23,6 +24,13 @@ typedef	struct	s_color
 	int		g;
 	int		b;
 }				t_color;
+
+typedef struct	s_play
+{
+	int		posx;
+	int		posy;
+	char	dir;
+}				t_play;
 
 typedef struct	s_data
 {
@@ -36,12 +44,12 @@ typedef struct	s_data
 	char	*pat_we;
 	char	*pat_s;
 	char	*map;
-	int		**matrix_map;
+	char	**matrix_map;
+	char	**copy;
 	t_color	*ceiling;
 	t_color	*floor;
+	t_play	*player;
 }				t_data;
-
-
 
 int		description_read(t_data *data);
 void	ft_init(t_data *data);
@@ -51,7 +59,12 @@ int		f_color(t_data *data);
 int		color_errors(t_data *data);
 void	t_paths(t_data *data);
 void	map_read(t_data *data);
-void	map_to_matrix(t_data *data);
+void	map_to_matrix(t_data *data, int rows, int cols);
+void	mem_map (t_data *data);
+void	copy_map (t_data *data, int rows, int cols);
+void	p_finder (t_data *data, int rows);
+void	p_position (t_data *data, int i, int j);
+int		check_map (t_data *data, int i, int j);
 /*
 **              				GET NEXT LINE
 */
@@ -70,4 +83,8 @@ size_t	ft_strlen(const char *s);
 */
 
 int		ft_atoi(const char *str);
+#endif
+
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 42
 #endif

@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/27 17:34:47 by mbahstou          #+#    #+#             */
-/*   Updated: 2021/03/18 23:29:07 by mohamed          ###   ########.fr       */
+/*   Created: 2019/11/12 11:29:14 by mbahstou          #+#    #+#             */
+/*   Updated: 2021/01/05 11:01:52 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int	color_errors(t_data *data)
+int		ft_atoi(const char *str)
 {
-	int i;
+	int		i;
+	int		n;
+	int		a;
+	int		sign;
 
-	i = 2;
-	while (data->line[i] != '\0')
+	i = 0;
+	n = 1;
+	a = 0;
+	sign = 0;
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' ||
+			str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		if (!((data->line[i] > 47 && data->line[i] < 58)
-		|| data->line[i] == ',' || data->line[i] == ' '))
-		{
-			printf("%s", "invalid set of colors");
-			return (1);
-		}
+		if (str[i] == '-')
+			n = -n;
+		i++;
+		sign++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		a = (a * 10) + str[i] - '0';
 		i++;
 	}
-	return (0);
+	return (sign > 1 ? 0 : a * n);
 }

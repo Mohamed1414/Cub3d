@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   description_read.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbahstou <mbahstou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:37:06 by mbahstou          #+#    #+#             */
-/*   Updated: 2020/11/27 19:58:21 by mbahstou         ###   ########.fr       */
+/*   Updated: 2021/01/19 12:32:09 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		c_color(t_data *data)
 	int i;
 
 	i = 2;
-
 	if (color_errors(data) == 1)
 		return (1);
 	while (data->line[i] != '\0')
@@ -89,16 +88,16 @@ void	t_paths(t_data *data)
 	i = 0;
 	if (data->line[i] == 'N' && data->line[i + 1] == 'O'
 		&& data->line[i + 2] == ' ')
-		data->pat_no = ft_strdup(&data->line[i + 2]);
+		data->pat_no = ft_strdup(&data->line[i + 3]);
 	else if (data->line[i] == 'S' && data->line[i + 1] == 'O'
 		&& data->line[i + 2] == ' ')
-		data->pat_so = ft_strdup(&data->line[i + 2]);
+		data->pat_so = ft_strdup(&data->line[i + 3]);
 	else if (data->line[i] == 'W' && data->line[i + 1] == 'E'
 		&& data->line[i + 2] == ' ')
-		data->pat_we = ft_strdup(&data->line[i + 2]);
+		data->pat_we = ft_strdup(&data->line[i + 3]);
 	else if (data->line[i] == 'E' && data->line[i + 1] == 'A'
 		&& data->line[i + 2] == ' ')
-		data->pat_ea = ft_strdup(&data->line[i + 2]);
+		data->pat_ea = ft_strdup(&data->line[i + 3]);
 	else if (data->line[i] == 'S' && data->line[i + 1] == ' ')
 		data->pat_s = ft_strdup(&data->line[i + 2]);
 }
@@ -123,7 +122,7 @@ int		description_read(t_data *data)
 				return (1);
 		}
 		t_paths(data);
-		if (data->line[i] == 1 || data->line[i] == 0)
+		if (data->line[i] >= 48 && data->line[i] <= 49 || data->line[i] == ' ')
 			map_read(data);
 	}
 	return (0);
