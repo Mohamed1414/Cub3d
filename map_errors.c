@@ -48,12 +48,12 @@ void p_position (t_data *data, int i, int j)
     check_map(data, i, j);
 }
 
-void p_finder (t_data *data, int rows)
+void p_finder (t_data *data)
 {
     int i;
     int j;
 
-    while (i < rows)
+    while (i < data->rows)
     {
         i = 0;
         while (data->copy[i][j] != '\0')
@@ -71,32 +71,30 @@ void p_finder (t_data *data, int rows)
     }
 }
 //copia el mapa para hacer en la copia las comprobaciones
-void copy_map (t_data *data, int rows, int cols)
+void map_errors (t_data *data)
 {
     int i;
     int j;
-    int z;
 
     i = 0;
-    z = 0;
-    if (!(data->copy = (char**)malloc( rows * sizeof(char*))))
+    if (!(data->copy = (char**)malloc( data->rows * sizeof(char*))))
 		printf("fail allocating memory");
-	while (i < rows)
+	while (i < data->rows)
 	{
-		if (!(data->copy[i] = (char*)malloc(cols * sizeof(char))))
+		if (!(data->copy[i] = (char*)malloc(data->cols * sizeof(char))))
 			printf("fail allocating memory");
 		i++;
 	}
     i = 0;
-    while (i < rows)
+    while (i < data->rows)
 	{
 		j = 0;
-		while (j < cols)
+		while (j < data->cols)
 		{
-			data->matrix_map[i][j] = data->map[z];
+			data->copy[i][j] = data->matrix_map[i][j];
 			j++;
-			z++;
 		}
 		i++;
 	}
+    p_finder(data);
 }

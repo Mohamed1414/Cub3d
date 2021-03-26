@@ -6,13 +6,13 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 18:32:57 by mbahstou          #+#    #+#             */
-/*   Updated: 2021/01/27 12:28:45 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/03/27 00:27:23 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	map_to_matrix(t_data *data, int rows, int cols)
+void	map_to_matrix(t_data *data)
 {
 	int i;
 	int j;
@@ -20,10 +20,10 @@ void	map_to_matrix(t_data *data, int rows, int cols)
 
 	i = 0;
 	z = 0;
-	while (i < rows)
+	while (i < data->rows)
 	{
 		j = 0;
-		while (j < cols)
+		while (j < data->cols)
 		{
 			data->matrix_map[i][j] = data->map[z];
 			j++;
@@ -57,6 +57,8 @@ void	mem_map (t_data *data)
 			rows++;
 		i++;
 	}
+	data->rows = rows;
+	data->cols = cols;
 	i = 0;
 	if (!(data->matrix_map = (char**)malloc( rows * sizeof(char*))))
 		printf("fail allocating memory");
@@ -66,8 +68,8 @@ void	mem_map (t_data *data)
 			printf("fail allocating memory");
 		i++;
 	}
-	map_to_matrix(data, rows, cols);
-	//copy_map(data, rows, cols);
+	map_to_matrix(data);
+	map_errors(data);
 }
 
 void	map_read(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:37:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2021/03/19 00:21:34 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/03/27 00:20:10 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_init(t_data *data)
 
 int		main(int argc, char *argv[])
 {
+	int i = 0;
+	int j = 0;
 	t_data *data;
 
 	data = malloc(sizeof(t_data));
@@ -39,5 +41,15 @@ int		main(int argc, char *argv[])
 		return (1);
 	}
 	description_read(data);
+	while(i < data->rows)
+	{
+		while(j < data->cols)
+		{
+			printf("%c", data->copy[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 	return (0);
 }
