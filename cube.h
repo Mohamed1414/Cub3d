@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:42:13 by mbahstou          #+#    #+#             */
-/*   Updated: 2021/02/08 21:00:43 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/03/31 23:45:42 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@ typedef	struct	s_color
 	int		b;
 }				t_color;
 
-typedef struct	s_play
-{
-	int		posx;
-	int		posy;
-	char	dir;
-}				t_play;
-
 typedef struct	s_data
 {
 	char 	*line;
@@ -46,9 +39,13 @@ typedef struct	s_data
 	char	*map;
 	char	**matrix_map;
 	char	**copy;
+	int		rows;
+	int		cols;
 	t_color	*ceiling;
 	t_color	*floor;
-	t_play	*player;
+	int		posx;
+	int		posy;
+	char	dir;
 }				t_data;
 
 int		description_read(t_data *data);
@@ -59,12 +56,18 @@ int		f_color(t_data *data);
 int		color_errors(t_data *data);
 void	t_paths(t_data *data);
 void	map_read(t_data *data);
-void	map_to_matrix(t_data *data, int rows, int cols);
+void	map_to_matrix(t_data *data);
 void	mem_map (t_data *data);
-void	copy_map (t_data *data, int rows, int cols);
-void	p_finder (t_data *data, int rows);
+void	map_errors (t_data *data);
+void	p_finder (t_data *data);
 void	p_position (t_data *data, int i, int j);
 int		check_map (t_data *data, int i, int j);
+
+//        funciones provisionales 
+void check_valid (t_data *data, int i, int j);
+void check_map2 (t_data *data);
+void to_zero (t_data *data, int i, int j);
+
 /*
 **              				GET NEXT LINE
 */
