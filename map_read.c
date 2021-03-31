@@ -6,7 +6,7 @@
 /*   By: mohamed <mohamed@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 18:32:57 by mbahstou          #+#    #+#             */
-/*   Updated: 2021/03/27 00:27:23 by mohamed          ###   ########.fr       */
+/*   Updated: 2021/03/31 01:28:18 by mohamed          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,9 @@ void	mem_map (t_data *data)
 {
 	int i;
 	int j;
-	int	rows;
-	int cols;
 
 	i = 0;
-	rows = 1;
-	cols = 0;
+	data->rows = 1;
 	while (data->map[i] != '\0')
 	{
 		j = 0;
@@ -51,20 +48,19 @@ void	mem_map (t_data *data)
 			i++;
 			j++;
 		}
-		if (j > cols)
-			cols = j;
+		if (j > data->cols)
+			data->cols = j;
 		if (data->map[i] == '\n')
-			rows++;
+			data->rows++;
 		i++;
 	}
-	data->rows = rows;
-	data->cols = cols;
+	
 	i = 0;
-	if (!(data->matrix_map = (char**)malloc( rows * sizeof(char*))))
+	if (!(data->matrix_map = (char**)malloc( data->rows * sizeof(char*))))
 		printf("fail allocating memory");
-	while (i < rows)
+	while (i < data->rows)
 	{
-		if (!(data->matrix_map[i] = (char*)malloc(cols * sizeof(char))))
+		if (!(data->matrix_map[i] = (char*)malloc(data->cols * sizeof(char))))
 			printf("fail allocating memory");
 		i++;
 	}
